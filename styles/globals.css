@@ -24,3 +24,14 @@ a {
     background: black;
   }
 }
+
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+  margin-left: 5rem;
+}
+
+.nav ul li:hover {
+  text-decoration-line: underline;
+}
