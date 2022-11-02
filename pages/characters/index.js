@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
 import styles from "../../styles/Home.module.css";
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <>
       <h1 className={styles.title}>Avatar List</h1>
 
       <p className={styles.description}></p>
@@ -29,7 +28,7 @@ export default function Home() {
           />
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 
