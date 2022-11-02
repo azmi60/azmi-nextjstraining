@@ -33,6 +33,35 @@
   margin-left: 0.5rem;
 }
 
+.nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  width: 100%;
+}
+
+.nav ul li:hover {
+  text-decoration-line: underline;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav-favorite {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-favorite svg {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+}
+
 @media (prefers-color-scheme: dark) {
   .footer {
     border-color: #222;

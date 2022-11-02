@@ -1,0 +1,58 @@
+.card {
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.card h2,
+.card p {
+  cursor: default;
+}
+
+.bottom-area {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
+.card button {
+  background-color: transparent;
+  border-style: none;
+  cursor: pointer;
+}
+
+.card button.added svg {
+  color: rgb(239 68 68);
+	animation: pulse .2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.card svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+@keyframes pulse {
+	0% {transform: scale(1); }
+	50% {transform: scale(1.3);}
+	100% {transform: scale(1);}
+}

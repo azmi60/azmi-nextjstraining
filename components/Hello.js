@@ -1,4 +1,4 @@
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/components/Card.module.css";
 
 export default function Hello() {
   return (
