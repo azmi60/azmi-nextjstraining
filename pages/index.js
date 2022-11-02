@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import styles from "../styles/Home.module.css";
+import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
 
-const Hello = dynamic(() => import("../components/Hello"), {
+const Hello = dynamic(() => import("@/components/Hello"), {
   loading: () => (
     <div
       className="pulse"
