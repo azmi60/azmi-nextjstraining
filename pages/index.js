@@ -2,9 +2,21 @@ import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
+import dynamic from "next/dynamic";
+
+const Hello = dynamic(() => import("../components/Hello"), {
+  loading: () => (
+    <div
+      className="pulse"
+      style={{ backgroundColor: "#222", borderRadius: "1rem" }}
+    />
+  ),
+  ssr: false,
+});
 
 export default function Home() {
   const [characters, setCharacters] = useState([]);
+  const [reqHello, setReqHello] = useState(false);
 
   useEffect(() => {
     fetch("https://last-airbender-api.herokuapp.com/api/v1/characters/avatar")
@@ -20,28 +32,44 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className={styles.title}>Avatar List</h1>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "4rem",
+          minHeight: "60vh",
+        }}
+      >
+        <section style={{ gridColumn: 2 }}>
+          <h1 className={styles.title}>Avatar List</h1>
 
-      {characters.length === 0 && <LoadingSkeleton />}
+          {characters.length === 0 && <LoadingSkeleton />}
 
-      <ul className="list">
-        {characters.map(({ _id, name }) => (
-          <li key={_id}>
-            <Link href={`/characters/${name}`}>{name}</Link>
-          </li>
-        ))}
+          <ul className="list">
+            {characters.map(({ _id, name }) => (
+              <li key={_id}>
+                <Link href={`/characters/${name}`}>{name}</Link>
+              </li>
+            ))}
 
-        <style jsx>{`
-          .list {
-            list-style-type: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 0px;
-            text-align: center;
-          }
-        `}</style>
-      </ul>
+            <style jsx>{`
+              .list {
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0px;
+                text-align: center;
+              }
+            `}</style>
+          </ul>
+        </section>
+
+        <div>
+          <button onClick={() => setReqHello((b) => !b)}>Request Hello</button>
+          {reqHello ? <Hello /> : null}
+        </div>
+      </div>
     </>
   );
 }
@@ -49,7 +77,7 @@ export default function Home() {
 function LoadingSkeleton() {
   return (
     <div className="container">
-      {new Array(5).fill(null).map(() => (
+      {new Array(5).fill(null).map((_, i) => (
         <div
           style={{
             backgroundColor: "#222",
@@ -58,6 +86,7 @@ function LoadingSkeleton() {
             borderRadius: "9999px",
           }}
           className="pulse"
+          key={i}
         />
       ))}
       <style jsx>
@@ -67,20 +96,6 @@ function LoadingSkeleton() {
             flex-direction: column;
             gap: 1.25rem;
             margin-top: 2rem;
-          }
-
-          .pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          }
-
-          @keyframes pulse {
-            0%,
-            100% {
-              opacity: 1;
-            }
-            50% {
-              opacity: 0.5;
-            }
           }
         `}
       </style>
