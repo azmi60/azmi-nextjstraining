@@ -15,26 +15,15 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+/* @media (prefers-color-scheme: dark) { */
+html {
+  color-scheme: dark;
 }
-
-.nav ul {
-  display: flex;
-  gap: 2rem;
-  list-style-type: none;
-  margin-left: 5rem;
+body {
+  color: white;
+  background: black;
 }
-
-.nav ul li:hover {
-  text-decoration-line: underline;
-}
+/* } */
 
 .pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
