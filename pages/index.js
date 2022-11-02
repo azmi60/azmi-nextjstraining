@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "@/styles/Home.module.css";
 import dynamic from "next/dynamic";
 
@@ -14,15 +14,19 @@ const Hello = dynamic(() => import("@/components/Hello"), {
   ssr: false,
 });
 
-export default function Home() {
-  const [characters, setCharacters] = useState([]);
-  const [reqHello, setReqHello] = useState(false);
+export async function getStaticProps() {
+  const res = await fetch("https://last-airbender-api.herokuapp.com/api/v1/characters/avatar")
+  const characters = await res.json()
 
-  useEffect(() => {
-    fetch("https://last-airbender-api.herokuapp.com/api/v1/characters/avatar")
-      .then((res) => res.json())
-      .then(setCharacters);
-  }, []);
+  return {
+    props: {
+      characters
+    }
+  }
+}
+
+export default function Home({characters}) {
+  const [reqHello, setReqHello] = useState(false);
 
   return (
     <>
@@ -43,7 +47,7 @@ export default function Home() {
         <section style={{ gridColumn: 2 }}>
           <h1 className={styles.title}>Avatar List</h1>
 
-          {characters.length === 0 && <LoadingSkeleton />}
+          {/* {characters.length === 0 && <LoadingSkeleton />} */}
 
           <ul className="list">
             {characters.map(({ _id, name }) => (
