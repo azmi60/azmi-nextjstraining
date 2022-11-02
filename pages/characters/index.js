@@ -35,18 +35,6 @@ export default function Home() {
 function Card({ _id, name, affiliation, photoUrl }) {
   return (
     <Link href={`/characters/id/${_id}`} className={styles.card}>
-      {/* <div */}
-      {/*   style={{ position: "relative", width: "100%", paddingBottom: "70%" }} */}
-      {/* > */}
-      {/*   <Image */}
-      {/*     loader={() => photoUrl} */}
-      {/*     src={photoUrl} */}
-      {/*     alt={name} */}
-      {/*     layout="fill" */}
-      {/*     objectFit="contain" */}
-      {/*     sizes="260px" */}
-      {/*   /> */}
-      {/* </div> */}
       <Image
         loader={() => photoUrl}
         src={photoUrl}
