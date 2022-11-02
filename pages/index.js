@@ -8,24 +8,32 @@ const Hello = dynamic(() => import("@/components/Hello"), {
   loading: () => (
     <div
       className="pulse"
-      style={{ backgroundColor: "#222", borderRadius: "1rem" }}
+      style={{
+        marginTop: "1rem",
+        width: "100%",
+        height: "20rem",
+        backgroundColor: "#111",
+        borderRadius: "1rem",
+      }}
     />
   ),
   ssr: false,
 });
 
 export async function getStaticProps() {
-  const res = await fetch("https://last-airbender-api.herokuapp.com/api/v1/characters/avatar")
-  const characters = await res.json()
+  const res = await fetch(
+    "https://last-airbender-api.herokuapp.com/api/v1/characters/avatar"
+  );
+  const characters = await res.json();
 
   return {
     props: {
-      characters
-    }
-  }
+      characters,
+    },
+  };
 }
 
-export default function Home({characters}) {
+export default function Home({ characters }) {
   const [reqHello, setReqHello] = useState(false);
 
   return (
