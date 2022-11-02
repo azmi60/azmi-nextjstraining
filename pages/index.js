@@ -7,13 +7,11 @@ import dynamic from "next/dynamic";
 const Hello = dynamic(() => import("@/components/Hello"), {
   loading: () => (
     <div
-      className="pulse"
+      className="pulse-card"
       style={{
         marginTop: "1rem",
         width: "100%",
         height: "20rem",
-        backgroundColor: "#111",
-        borderRadius: "1rem",
       }}
     />
   ),
@@ -60,7 +58,7 @@ export default function Home({ characters }) {
           <ul className="list">
             {characters.map(({ _id, name }) => (
               <li key={_id}>
-                <Link href={`/characters/${name}`}>{name}</Link>
+                <Link href={`/characters/${_id}`}>{name}</Link>
               </li>
             ))}
 
